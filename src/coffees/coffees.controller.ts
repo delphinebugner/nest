@@ -22,7 +22,7 @@ export class CoffeesController {
     return this.coffeesService.findAll();
   }
   @Get(':id')
-  findOne(@Param('id') id: number): Coffee {
+  findOne(@Param('id') id: number) {
     return this.coffeesService.findOne(`${id}`);
   }
   @Post()
