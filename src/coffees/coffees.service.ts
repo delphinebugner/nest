@@ -21,15 +21,17 @@ export class CoffeesService {
     return this.coffees.find((coffee) => `${coffee.id}` === id);
   }
 
+  private findIndex(id: string): number {
+    return this.coffees.findIndex((coffee) => `${coffee.id}` === id);
+  }
+
   create(newCoffee: Coffee): void {
     this.coffees.push(newCoffee);
   }
 
   update(id: string, updateCoffeeDto: any): void {
-    const oldCoffeeIndex = this.coffees.findIndex(
-      (coffee) => `${coffee.id}` === id,
-    );
-    if (oldCoffeeIndex > 0) {
+    const oldCoffeeIndex = this.findIndex(id);
+    if (oldCoffeeIndex >= 0) {
       const oldCoffee = this.findOne(id);
       const newCoffee = { ...oldCoffee, ...updateCoffeeDto };
       this.coffees.splice(oldCoffeeIndex, 1, newCoffee);
@@ -37,10 +39,8 @@ export class CoffeesService {
   }
 
   remove(id: string): void {
-    const coffeeToDeleteIndex = this.coffees.findIndex(
-      (coffee) => `${coffee.id}` === id,
-    );
-    if (coffeeToDeleteIndex > 0) {
+    const coffeeToDeleteIndex = this.findIndex(id);
+    if (coffeeToDeleteIndex >= 0) {
       this.coffees.splice(coffeeToDeleteIndex, 1);
     }
   }
