@@ -22,8 +22,8 @@ export class CoffeesController {
     return this.coffeesService.findAll();
   }
   @Get(':id')
-  findOne(@Param('id') id: string): Coffee {
-    return this.coffeesService.findOne(id);
+  findOne(@Param('id') id: number): Coffee {
+    return this.coffeesService.findOne(`${id}`);
   }
   @Post()
   create(@Body() createCoffeeDto: CreateCoffeeDto) {
