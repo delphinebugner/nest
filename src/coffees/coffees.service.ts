@@ -30,8 +30,9 @@ export class CoffeesService {
     return this.coffees.findIndex((coffee) => `${coffee.id}` === id);
   }
 
-  create(newCoffeeDto: CreateCoffeeDto): void {
-    this.coffees.push({ ...newCoffeeDto, id: this.coffees.length });
+  create(createCoffeeDto: CreateCoffeeDto): CreateCoffeeDto {
+    this.coffees.push({ ...createCoffeeDto, id: this.coffees.length });
+    return createCoffeeDto;
   }
 
   update(id: string, updateCoffeeDto: any): void {
