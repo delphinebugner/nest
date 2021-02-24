@@ -9,7 +9,7 @@ import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
 import { COFFEE_BRANDS } from './coffee.constants';
 
-@Injectable({ scope: Scope.TRANSIENT })
+@Injectable({ scope: Scope.DEFAULT })
 export class CoffeesService {
   constructor(
     @InjectRepository(Coffee)
