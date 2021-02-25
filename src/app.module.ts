@@ -7,8 +7,7 @@ import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import appConfig from './config/app.config';
-import { APP_FILTER, APP_PIPE } from '@nestjs/core';
-import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import { CommonModule } from './common/common.module';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
@@ -29,18 +28,9 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
     CoffeesModule,
     CoffeeRatingModule,
     DatabaseModule,
+    CommonModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      provide: APP_PIPE,
-      useClass: ValidationPipe,
-    },
-    {
-      provide: APP_FILTER,
-      useClass: HttpExceptionFilter,
-    },
-  ],
+  providers: [AppService],
 })
 export class AppModule {}
