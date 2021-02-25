@@ -21,10 +21,7 @@ export class CoffeesService {
     @Inject(COFFEE_BRANDS) coffeeBrands: string[],
     private readonly configService: ConfigService,
   ) {
-    console.log(
-      'password',
-      configService.get<string>('DATABASE_PASSWORD', 'soleil123'),
-    );
+    console.log('host', configService.get('database.host', 'localhost'));
     console.log("Coffee service vient d'etre instancié !");
   }
 
